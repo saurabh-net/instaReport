@@ -9,6 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="http://www.cmcaindia.org/wp-content/uploads/2014/11/favicon.png">
     <script src="js/date.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <title> Dashboard | Bangalore | Weekly Reports </title>
 
@@ -66,24 +67,7 @@
       <div id="myTable">  </div>
 
 <script>
-var xmlhttp = new XMLHttpRequest();
-var url = "https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20*%20FROM%201Qx_ei8J2W1_Tz3QxAyrscpgnrsXRg3IraD62E_V-&key=AIzaSyCH21YurHYLIARfeyKNel4e3JFAjJk_xW8";
-
-xmlhttp.onreadystatechange=function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        myFunction(xmlhttp.responseText);
-    }
-}
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
-
-function myFunction(response) {
-    var arr = JSON.parse("["+response+"]");
-    arr = arr[0].rows;
-
-    var i;
-    var out = "<table id=\"table1\" class=\"table table-hover table-striped table-bordered filterable \">";
- 
+var out = "<table id=\"table1\" class=\"table table-hover table-striped table-bordered filterable \">";
     out+= "<thead><tr><th>" + "Name" + "</th><th>" + 
     "School" + "</th><th>" + 
     "Code" + "</th><th>" +
@@ -96,10 +80,52 @@ function myFunction(response) {
     "Acts of AC" + "</th><th>" + 
     "Other" + "</th><th>" + 
     "</th></tr></thead>";
-    i = 0;     
-    for(; i < arr.length; i++) {
-    	try{
-        out += "<tbody><tr><td>" + 
+var graphicData, webData;
+$.when(
+    $.getJSON("https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20*%20FROM%201Qx_ei8J2W1_Tz3QxAyrscpgnrsXRg3IraD62E_V-&key=AIzaSyCH21YurHYLIARfeyKNel4e3JFAjJk_xW8", function(data) {
+        graphicData = data;
+    }),
+    $.getJSON(" https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20*%20FROM%201wQuKjNv9LwGd81o5s1KOfHIMZQaUMkLg1dbY-KfO&key=AIzaSyCH21YurHYLIARfeyKNel4e3JFAjJk_xW8", function(data) {
+        webData = data;
+    })
+).then(function() {
+    if (graphicData) {
+      arr = graphicData.rows;
+      console.log(graphicData);
+      //alert(arr);
+      myFunction(arr);
+    }
+    else {
+        // Request for graphic data didn't work, handle it
+        alert("First request failed");
+    }
+    if (webData) {
+        // Worked, put webData in #view-web
+        arr = webData.rows;
+        //alert(webData);
+        myFunctionMod(arr);
+
+        out += "</table >";
+    document.getElementById("myTable").innerHTML = out;
+    }
+    else {
+        // Request for web data didn't work, handle it
+        //alert("Second Request Failed");
+        out += "</table >";
+    document.getElementById("myTable").innerHTML = out;
+    }
+});
+
+function myFunction(response) {
+    //alert(out);
+    var arr = response;
+    //alert(arr);
+    var i;   
+
+    for(i = 0;i < arr.length; i++) {
+      try{
+
+        out+= "<tbody><tr><td>" + 
         arr[i][10] +"</td><td>" +
         arr[i][11] +"</td><td>" +
         arr[i][12] +"</td><td>" +
@@ -114,12 +140,42 @@ function myFunction(response) {
         "</td></tr><tbody>";
     }
     catch(e){
-    	continue;
+      continue;
     }
     }
-    out += "</table >";
-    document.getElementById("myTable").innerHTML = out;
+    
 }
+
+function myFunctionMod(response) {
+    //alert(out);
+    var arr = response;
+    //alert(arr);
+    var i;   
+
+    for(i = 0;i < arr.length; i++) {
+      try{
+
+        out+= "<tbody><tr><td>" + 
+        arr[i][10] +"</td><td>" +
+        arr[i][11] +"</td><td>" +
+        "0" +"</td><td>" +
+        Date.parse(arr[i][12]).toString('dd MMMM yyyy')  +"</td><td>" +
+        arr[i][13] +"</td><td>" +
+        arr[i][14] +"</td><td>" +
+        arr[i][15] +"</td><td>" +
+        arr[i][16] +"</td><td>" +
+        arr[i][17] +"</td><td>" +
+        arr[i][18] +"</td><td>" +
+        arr[i][27] +"</td><td>" +
+        "</td></tr><tbody>";
+    }
+    catch(e){
+      continue;
+    }
+    }
+    
+}
+
 </script>
 
 
@@ -129,7 +185,7 @@ function myFunction(response) {
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
