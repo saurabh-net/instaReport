@@ -10,10 +10,10 @@
     <link rel="icon" href="http://www.cmcaindia.org/wp-content/uploads/2014/11/favicon.png">
     <script src="js/date.js"></script>
 
-    <title> Dashboard | Mumbai | Weekly Reports </title>
+    <title> Dashboard | Bangalore Government | Weekly Reports </title>
 
     <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
 
@@ -43,8 +43,8 @@
           <ul class="nav navbar-nav">
             <li><a href="index.html">Home</a></li>
             <li class="active"><a href="#">Weekly</a></li>
-            <li><a href="dashboardMumbaiCampaign.html">Campaign</a></li>
-            <li><a href="dashboardMumbaiActs.html">Acts of Active Citizenship</a></li>
+            <li><a href="dashboardBangaloreGovernmentCampaign.html">Campaign</a></li>
+            <li><a href="dashboardBangaloreGovernmentActs.html">Acts of Active Citizenship</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -55,7 +55,7 @@
         <br>
         <button type="button" class="download btn btn-primary btn-block">Download Excel Sheet</button>
         </div>
-        <h1>Weekly Reports | Mumbai</h1>
+        <h1>Weekly Reports | Bangalore Government</h1>
         <br>
       <div>
     <p>
@@ -72,7 +72,7 @@
 <script>
 var data;
 var xmlhttp = new XMLHttpRequest();
-var url = "https://www.googleapis.com/fusiontables/v1/query?sql=SELECT%20*%20FROM%201nNbTlfPPIOvtCMHYTAD1I-maFof35CYIj2tLISqj&key=AIzaSyCH21YurHYLIARfeyKNel4e3JFAjJk_xW8";
+var url = "https://www.googleapis.com/fusiontables/v1/query?sql=SELECT%20*%20FROM%201q4A-CEQzcJtfnT7EwUQ--L7Wf-Xhb8NhXWTwJRGr&key=AIzaSyCH21YurHYLIARfeyKNel4e3JFAjJk_xW8";
 
 xmlhttp.onreadystatechange=function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -92,41 +92,41 @@ function myFunction(response) {
            // alert(array[0][6]);
             for (var i = 0; i < arr.length; i++) {
                 try{
-                  var line = '';
-                  var timestamp = arr[i][6];
-                  timestamp = timestamp.substring(0,timestamp.length - 4)
-                  line += '"' + Date.parse(timestamp).toString('dd-MMMM-yyyy hh:mm:ss') + '"';
-                  line += ",";
-                  line += '"' + arr[i][10] + '"';
-                  line += ",";
-                  line += '"' + arr[i][11] + '"' ;
-                  line += ",";
-                  line += '"' + arr[i][12] +'"' ;
-                  line += ",";
-                  //line += '"' + array[i][13] +'"' ;
-                  line += '"' + Date.parse(arr[i][13]).toString('dd-MMMM-yyyy') + '"';
-                  line += ",";
-                  line += '"' + arr[i][14] + '"';
-                  line += ",";
-                  line += '"' + arr[i][15] + '"';
-                  line += ",";
-                  line += '"' + arr[i][16] + '"';
-                  line += ",";
-                  line += '"' + arr[i][17] + '"';
-                  line += ",";
-                  line += '"' + arr[i][18] + '"';
-                  line += ",";
-                  line += '"' + arr[i][19] + '"';
-                  line += ",";
-                  line += '"' + arr[i][28] + '"';
+                	var line = '';
+                	var timestamp = arr[i][6];
+                	timestamp = timestamp.substring(0,timestamp.length - 4)
+                	line += '"' + Date.parse(timestamp).toString('dd-MMMM-yyyy hh:mm:ss') + '"';
+	                line += ",";
+	                line += '"' + arr[i][10] + '"';
+	                line += ",";
+	                line += '"' + arr[i][11] + '"' ;
+	                line += ",";
+	                line += '"' + arr[i][12] +'"' ;
+	                line += ",";
+	                //line += '"' + array[i][13] +'"' ;
+	                line += '"' + Date.parse(arr[i][13]).toString('dd-MMMM-yyyy') + '"';
+	                line += ",";
+	                line += '"' + arr[i][14] + '"';
+	                line += ",";
+	                line += '"' + arr[i][15] + '"';
+	                line += ",";
+	                line += '"' + arr[i][16] + '"';
+	                line += ",";
+	                line += '"' + arr[i][17] + '"';
+	                line += ",";
+	                line += '"' + arr[i][18] + '"';
+	                line += ",";
+	                line += '"' + arr[i][19] + '"';
+	                line += ",";
+	                line += '"' + arr[i][28] + '"';
 
-                  str += line + '\r\n';
-                  ctr++;
-              }
-              catch(e){
-                continue;
-              }
-              }
+	                str += line + '\r\n';
+	                ctr++;
+	            }
+	            catch(e){
+	            	continue;
+	            }
+	            }
 
     var i;
     var out = "<table id=\"table1\" class=\"table table-hover table-striped table-bordered filterable \">";
