@@ -86,22 +86,22 @@ function myFunction(response) {
     var arr = JSON.parse("["+response+"]");
     arr = arr[0].rows;
 
-    var str = 'Report Sent On , Name of Civic Tutor, School Name, School Code, Session Date, Visit Type, Teacher Coordinator Present, Section, Sub-section, Details, Acts of AC, Others'  + '\r\n'
+var str = 'Report Sent On , Name of Civic Tutor, School Name, School Code, Session Date, Visit Type, Teacher Coordinator Present, Section, Sub-section, Details, Acts of AC, Others'  + '\r\n'
 
             
            // alert(array[0][6]);
             for (var i = 0; i < arr.length; i++) {
                 try{
                   if(arr[i][14] == 'extra'){
-                  	console.log("extra");
-                  	arr[i][15] = arr[i][21];
-                  	arr[i][16] = arr[i][22]
-                  	arr[i][17] = arr[i][23]
-                  	arr[i][18] = arr[i][24]
-                  	arr[i][19] = arr[i][25]
+                    //console.log("extra");
+                    arr[i][15] = arr[i][21];
+                    arr[i][16] = arr[i][22]
+                    arr[i][17] = arr[i][23]
+                    arr[i][18] = arr[i][24]
+                    arr[i][19] = arr[i][25]
                   }
                   if(arr[i][14] == 'cancelled'){
-                  	arr[i][18] = arr[i][27]
+                    arr[i][18] = arr[i][27]
                   }
                   var line = '';
                   var timestamp = arr[i][6];

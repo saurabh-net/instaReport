@@ -92,21 +92,23 @@ $.when(
         webData = data;
     })
 ).then(function() {
-    if (graphicData) {
-      arr = graphicData.rows;
-      console.log(graphicData);
-      //alert(arr);
-      data1 = myFunction(arr);
+    if (webData) {
+      //arr = graphicData.rows;
+      arr = webData.rows;
+      //console.log(graphicData);
+      //alert("1");;
+      data1 = myFunctionMod(arr);
     }
     else {
         // Request for graphic data didn't work, handle it
-        alert("First request failed");
+        //alert("First request failed");
     }
-    if (webData) {
+    if (graphicData) {
         // Worked, put webData in #view-web
-        arr = webData.rows;
-        //alert(webData);
-        data2 = myFunctionMod(arr);
+        //arr = webData.rows;
+        arr = graphicData.rows;
+        //alert("2");
+        data2 = myFunction(arr);
 
         out += "</table >";
     document.getElementById("myTable").innerHTML = out;
@@ -122,7 +124,7 @@ $.when(
 function myFunction(response) {
     //alert(out);
     var arr = response;
-    //alert(arr);
+    //alert("3");
     var i;
     var str = 'Report Sent On , Name of Civic Tutor, School Name, School Code, Session Date, Visit Type, Teacher Coordinator Present, Section, Sub-section, Details, Acts of AC, Others'  + '\r\n'
 
@@ -130,6 +132,17 @@ function myFunction(response) {
        // alert(array[0][6]);
         for (var i = 0; i < arr.length; i++) {
             try{
+            	if(arr[i][14] == 'extra'){
+                  	//console.log("extra");
+                  	arr[i][15] = arr[i][21];
+                  	arr[i][16] = arr[i][22]
+                  	arr[i][17] = arr[i][23]
+                  	arr[i][18] = arr[i][24]
+                  	arr[i][19] = arr[i][25]
+                  }
+                  if(arr[i][14] == 'cancelled'){
+                  	arr[i][18] = arr[i][27]
+                  }
               var line = '';
               var timestamp = arr[i][6];
               timestamp = timestamp.substring(0,timestamp.length - 4)
@@ -195,11 +208,23 @@ function myFunctionMod(response) {
     //alert(out);
     var arr = response;
     //alert(arr);
+    //alert("4");
     var i;   
     var str = ''
 
             for (var i = 0; i < arr.length; i++) {
             try{
+            	if(arr[i][14] == 'extra'){
+                  	//console.log("extra");
+                  	arr[i][15] = arr[i][21];
+                  	arr[i][16] = arr[i][22]
+                  	arr[i][17] = arr[i][23]
+                  	arr[i][18] = arr[i][24]
+                  	arr[i][19] = arr[i][25]
+                  }
+                  if(arr[i][14] == 'cancelled'){
+                  	arr[i][18] = arr[i][27]
+                  }
               var line = '';
               var timestamp = arr[i][6];
               timestamp = timestamp.substring(0,timestamp.length - 4)

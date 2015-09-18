@@ -92,6 +92,17 @@ function myFunction(response) {
            // alert(array[0][6]);
             for (var i = 0; i < arr.length; i++) {
                 try{
+                	if(arr[i][14] == 'extra'){
+                  	//console.log("extra");
+                  	arr[i][15] = arr[i][21];
+                  	arr[i][16] = arr[i][22]
+                  	arr[i][17] = arr[i][23]
+                  	arr[i][18] = arr[i][24]
+                  	arr[i][19] = arr[i][25]
+                  }
+                  if(arr[i][14] == 'cancelled'){
+                  	arr[i][18] = arr[i][27]
+                  }
                 	var line = '';
                 	var timestamp = arr[i][6];
                 	timestamp = timestamp.substring(0,timestamp.length - 4)
@@ -159,7 +170,7 @@ function myFunction(response) {
         arr[i][28] +"</td><td>" +
         "</td></tr><tbody>";
     	}
-    	catch(exception e){
+    	catch(e){
     		console.log(arr[i]);
     		continue;
     	}
