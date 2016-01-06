@@ -85,6 +85,8 @@ xmlhttp.send();
 function myFunction(response) {
     var arr = JSON.parse("["+response+"]");
     arr = arr[0].rows;
+    console.log(response);
+
 
     var str = 'Report Sent On , Name of Civic Tutor, School Name, School Code, Session Date, Visit Type, Teacher Coordinator Present, Section, Sub-section, Details, Acts of AC, Others'  + '\r\n'
 

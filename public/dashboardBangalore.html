@@ -145,8 +145,9 @@ function myFunction(response) {
                   }
               var line = '';
               var timestamp = arr[i][6];
-              timestamp = timestamp.substring(0,timestamp.length - 4)
-              line += '"' + Date.parse(timestamp).toString('dd-MMMM-yyyy hh:mm:ss') + '"';
+              //timestamp = timestamp.substring(0,timestamp.length - 4)
+              line += '"' + Date.parse(timestamp).toString('dd-MMMM-yyyy') + '"';
+              // line += '"' + arr[i][6] + '"';
               line += ",";
               line += '"' + arr[i][10] + '"';
               line += ",";
